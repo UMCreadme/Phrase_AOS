@@ -5,7 +5,7 @@ plugins {
 
 android {
     namespace = "com.umc.phrase"
-    compileSdk = 34
+    compileSdk = 35
 
     defaultConfig {
         applicationId = "com.umc.phrase"
