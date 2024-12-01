@@ -2,7 +2,7 @@
 name: "\bDiscussion request"
 about: Suggest an disccussion for this project
 title: "[DISCUSSION] "
-labels: ''
+labels: ":bulb: discussion"
 assignees: ''
 
 ---
