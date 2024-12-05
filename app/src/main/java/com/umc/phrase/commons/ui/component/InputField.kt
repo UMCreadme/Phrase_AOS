@@ -40,13 +40,13 @@ enum class BorderType {
 }
 
 @Composable
-fun BasicInputField(
+fun BasicTextField(
     value: String,
     onValueChange: (String) -> Unit,
     modifier: Modifier = Modifier,
     placeholder: String = "",
     placeholderStyle: TextStyle = MaterialTheme.typography.bodyMedium.copy(color = MaterialTheme.colorScheme.onSurface),
-    textStyle: TextStyle = MaterialTheme.typography.titleMedium.copy(color = MaterialTheme.colorScheme.onBackground),
+    textStyle: TextStyle = MaterialTheme.typography.titleMedium,
     backgroundColor: Color = MaterialTheme.colorScheme.surface,
     validateInput: ((String) -> BorderType)? = null,
     errorMessage: String? = null,
@@ -72,12 +72,6 @@ fun BasicInputField(
         BorderType.ERROR -> MaterialTheme.colorScheme.error
     }
 
-    val textColor = when (borderType) {
-        BorderType.SUCCESS -> MaterialTheme.colorScheme.primary
-        BorderType.ERROR -> MaterialTheme.colorScheme.error
-        else -> textStyle.color
-    }
-
     val verticalAlignment = if (singleLine) {
         Alignment.CenterVertically
     } else {
@@ -85,15 +79,14 @@ fun BasicInputField(
     }
 
     Column(modifier = Modifier.fillMaxWidth()) {
-        BasicTextField(
-            value = value,
+        BasicTextField(value = value,
             onValueChange = {
                 if (maxLength == null || it.length <= maxLength) {
                     onValueChange(it)
                 }
             },
             modifier = modifier.fillMaxWidth(),
-            textStyle = textStyle.copy(color = textColor),
+            textStyle = textStyle.copy(color = MaterialTheme.colorScheme.onBackground),
             singleLine = singleLine,
             keyboardOptions = keyboardOptions,
             keyboardActions = keyboardActions,
@@ -104,9 +97,7 @@ fun BasicInputField(
                     modifier = Modifier
                         .fillMaxWidth()
                         .border(
-                            width = 1.dp,
-                            color = borderColor,
-                            shape = MaterialTheme.shapes.small
+                            width = 1.dp, color = borderColor, shape = MaterialTheme.shapes.small
                         )
                         .background(color = backgroundColor, shape = MaterialTheme.shapes.small)
                         .padding(15.dp)
@@ -120,8 +111,7 @@ fun BasicInputField(
                             Text(
                                 text = placeholder,
                                 style = placeholderStyle,
-                                modifier = Modifier
-                                    .align(Alignment.CenterStart)
+                                modifier = Modifier.align(Alignment.CenterStart)
                             )
                         }
                         innerTextField()
@@ -146,7 +136,7 @@ fun BasicInputField(
 }
 
 @Composable
-fun CleanableInputField(
+fun CleanableTextField(
     value: String,
     onValueChange: (String) -> Unit,
     onClear: () -> Unit = { onValueChange("") },
@@ -156,8 +146,7 @@ fun CleanableInputField(
     maxLength: Int? = null,
     visualTransformation: VisualTransformation = VisualTransformation.None
 ) {
-    BasicInputField(
-        value = value,
+    BasicTextField(value = value,
         onValueChange = onValueChange,
         placeholder = placeholder,
         validateInput = validateInput,
@@ -167,23 +156,20 @@ fun CleanableInputField(
         trailingIcon = {
             if (value.isNotEmpty()) {
                 DeleteButton(
-                    onClick = onClear,
-                    style = DeleteButtonStyle.DEFAULT
+                    onClick = onClear, style = DeleteButtonStyle.DEFAULT
                 )
             }
-        }
-    )
+        })
 }
 
 @Composable
-fun SearchInputField(
+fun SearchBar(
     value: String,
     onValueChange: (String) -> Unit,
     onSearch: () -> Unit,
     placeholder: String = "",
 ) {
-    BasicInputField(
-        value = value,
+    BasicTextField(value = value,
         onValueChange = onValueChange,
         placeholder = placeholder,
         backgroundColor = MaterialTheme.colorScheme.surfaceVariant,
@@ -198,8 +184,7 @@ fun SearchInputField(
                     .clickable { onSearch() },
                 tint = MaterialTheme.colorScheme.onSurfaceVariant
             )
-        }
-    )
+        })
 }
 
 @Preview(showBackground = true)
@@ -209,10 +194,9 @@ fun InputFieldPreview() {
 
     PhraseTheme {
         Column(
-            verticalArrangement = Arrangement.spacedBy(10.dp),
-            modifier = Modifier.padding(10.dp)
+            verticalArrangement = Arrangement.spacedBy(10.dp), modifier = Modifier.padding(10.dp)
         ) {
-            BasicInputField(
+            BasicTextField(
                 value = text,
                 onValueChange = { text = it },
                 validateInput = { _ ->
@@ -220,11 +204,10 @@ fun InputFieldPreview() {
                 },
                 singleLine = false,
                 placeholder = "내용을 입력해주세요.",
-                modifier = Modifier
-                    .size(width = 500.dp, height = 300.dp)
+                modifier = Modifier.size(width = 500.dp, height = 300.dp)
             )
 
-            BasicInputField(
+            BasicTextField(
                 value = text,
                 onValueChange = { text = it },
                 validateInput = { input ->
@@ -238,7 +221,7 @@ fun InputFieldPreview() {
                 placeholder = "닉네임을 입력해주세요.",
             )
 
-            BasicInputField(
+            BasicTextField(
                 value = text,
                 onValueChange = { text = it },
                 validateInput = { input ->
@@ -253,7 +236,7 @@ fun InputFieldPreview() {
                 visualTransformation = PasswordVisualTransformation()
             )
 
-            CleanableInputField(
+            CleanableTextField(
                 value = text,
                 onValueChange = { text = it },
                 validateInput = { input ->
@@ -267,7 +250,7 @@ fun InputFieldPreview() {
                 placeholder = "닉네임을 입력해주세요."
             )
 
-            SearchInputField(
+            SearchBar(
                 value = text,
                 onValueChange = { text = it },
                 onSearch = { /* Search action */ },
