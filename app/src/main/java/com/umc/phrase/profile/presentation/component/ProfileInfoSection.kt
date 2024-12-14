@@ -84,3 +84,19 @@ fun ProfileInfoSection(
         }
     }
 }
+
+@Preview
+@Composable
+fun ProfileInfoSectionPreview() {
+    MaterialTheme {
+        ProfileInfoSection(
+            profileImage = "https://loremflickr.com/150/150",
+            profileName = "Pearl",
+            bio = "compose Lover...",
+            followingCount = 20,
+            followerCount = 30,
+            onEditProfileClick = { /* 프로필 편집 로직 추가 */ },
+            onShareProfileClick = { /* 프로필 공유 로직 추가 */ }
+        )
+    }
+}
