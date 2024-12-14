@@ -1,4 +1,3 @@
-import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material3.*
@@ -7,8 +6,10 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import coil3.compose.AsyncImage
+import com.umc.phrase.commons.ui.component.SecondaryButton
 
 @Composable
 fun ProfileInfoSection(
@@ -65,15 +66,21 @@ fun ProfileInfoSection(
 
         // 프로필 편집 & 공유 버튼
         Row(
-            horizontalArrangement = Arrangement.SpaceEvenly,
+            horizontalArrangement = Arrangement.spacedBy(10.dp),
             modifier = Modifier.fillMaxWidth()
         ) {
-            Button(onClick = onEditProfileClick) {
-                Text("프로필 편집")
-            }
-            Button(onClick = onShareProfileClick) {
-                Text("프로필 공유")
-            }
+            SecondaryButton(
+                text = "프로필 편집",
+                onClick = onEditProfileClick,
+                modifier = Modifier.weight(1f),
+                enabled = true
+            )
+            SecondaryButton(
+                text = "프로필 공유",
+                onClick = onShareProfileClick,
+                modifier = Modifier.weight(1f),
+                enabled = true
+            )
         }
     }
 }
