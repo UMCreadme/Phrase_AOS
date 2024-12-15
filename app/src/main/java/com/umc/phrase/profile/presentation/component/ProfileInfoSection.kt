@@ -10,12 +10,14 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import coil3.compose.AsyncImage
 import com.umc.phrase.commons.ui.component.SecondaryButton
+import com.umc.phrase.commons.ui.theme.PhraseTheme
 
 @Composable
 fun ProfileInfoSection(
     profileImage: String,
     profileName: String,
     bio: String,
+    booksCount: Int,
     followingCount: Int,
     followerCount: Int,
     onEditProfileClick: () -> Unit,
@@ -54,12 +56,16 @@ fun ProfileInfoSection(
             modifier = Modifier.fillMaxWidth()
         ) {
             Column(horizontalAlignment = Alignment.CenterHorizontally) {
+                Text(text = booksCount.toString(), style = MaterialTheme.typography.headlineSmall)
+                Text(text = "읽은 책", style = MaterialTheme.typography.bodyMedium)
+            }
+            Column(horizontalAlignment = Alignment.CenterHorizontally) {
                 Text(text = followingCount.toString(), style = MaterialTheme.typography.headlineSmall)
-                Text(text = "Following", style = MaterialTheme.typography.bodyMedium)
+                Text(text = "팔로잉", style = MaterialTheme.typography.bodyMedium)
             }
             Column(horizontalAlignment = Alignment.CenterHorizontally) {
                 Text(text = followerCount.toString(), style = MaterialTheme.typography.headlineSmall)
-                Text(text = "Followers", style = MaterialTheme.typography.bodyMedium)
+                Text(text = "팔로워", style = MaterialTheme.typography.bodyMedium)
             }
         }
         Spacer(modifier = Modifier.height(16.dp))
@@ -73,7 +79,7 @@ fun ProfileInfoSection(
                 text = "프로필 편집",
                 onClick = onEditProfileClick,
                 modifier = Modifier.weight(1f),
-                enabled = true
+                enabled = true,
             )
             SecondaryButton(
                 text = "프로필 공유",
@@ -85,16 +91,17 @@ fun ProfileInfoSection(
     }
 }
 
-@Preview
+@Preview(showBackground = true)
 @Composable
 fun ProfileInfoSectionPreview() {
-    MaterialTheme {
+    PhraseTheme {
         ProfileInfoSection(
             profileImage = "https://loremflickr.com/150/150",
             profileName = "Pearl",
             bio = "compose Lover...",
-            followingCount = 20,
-            followerCount = 30,
+            booksCount = 11,
+            followingCount = 27,
+            followerCount = 35,
             onEditProfileClick = { /* 프로필 편집 로직 추가 */ },
             onShareProfileClick = { /* 프로필 공유 로직 추가 */ }
         )
