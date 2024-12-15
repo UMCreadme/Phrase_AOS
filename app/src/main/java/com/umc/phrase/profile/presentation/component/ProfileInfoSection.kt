@@ -54,7 +54,7 @@ fun ProfileInfoSection(
                 horizontalArrangement = Arrangement.SpaceAround,
                 modifier = Modifier
                     .fillMaxWidth()
-                    .padding(start = 60.dp, end = 20.dp)
+                    .padding(start = 60.dp, end = 10.dp)
             ) {
                 Column(horizontalAlignment = Alignment.CenterHorizontally) {
                     Text(
