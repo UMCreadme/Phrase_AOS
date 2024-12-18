@@ -1,16 +1,7 @@
-package com.umc.phrase.profile.presentation
+package com.umc.phrase.profile.presentation.ui
 
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.collectAsState
-import androidx.compose.ui.Modifier
-import androidx.compose.ui.unit.dp
-import com.umc.phrase.profile.presentation.component.ProfileTabs
-import com.umc.phrase.profile.presentation.component.ProfileInfoSection
+import com.umc.phrase.profile.presentation.ProfileViewModel
 
 @Composable
 fun ProfileScreen(

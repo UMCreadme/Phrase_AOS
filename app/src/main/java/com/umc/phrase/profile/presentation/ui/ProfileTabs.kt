@@ -1,4 +1,4 @@
-package com.umc.phrase.profile.presentation.component
+package com.umc.phrase.profile.presentation.ui
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
