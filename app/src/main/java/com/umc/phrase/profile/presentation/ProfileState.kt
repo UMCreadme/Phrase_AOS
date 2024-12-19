@@ -1,6 +1,6 @@
 package com.umc.phrase.profile.presentation
 
-data class ProfileViewState(
+data class ProfileState(
     val isLoading: Boolean = true,
     val profileImage: String = "",
     val profileName: String = "",
