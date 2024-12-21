@@ -1,4 +1,4 @@
-package com.umc.phrase.commons.ui.theme
+package com.umc.phrase.presentation.theme
 
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.lightColorScheme
