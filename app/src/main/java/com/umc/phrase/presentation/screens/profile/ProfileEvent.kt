@@ -1,4 +1,4 @@
-package com.umc.phrase.profile.presentation
+package com.umc.phrase.presentation.screens.profile
 
 sealed class ProfileEvent {
     data class TabSelected(val tabIndex: Int) : ProfileEvent()

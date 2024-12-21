@@ -1,4 +1,4 @@
-package com.umc.phrase.profile.presentation
+package com.umc.phrase.presentation.screens.profile
 
 import androidx.lifecycle.ViewModel
 import kotlinx.coroutines.flow.MutableStateFlow

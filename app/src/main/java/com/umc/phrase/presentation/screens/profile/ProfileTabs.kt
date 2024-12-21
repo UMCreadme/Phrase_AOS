@@ -1,4 +1,4 @@
-package com.umc.phrase.profile.presentation.ui
+package com.umc.phrase.presentation.screens.profile
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -18,7 +18,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import com.umc.phrase.R
-import com.umc.phrase.commons.ui.theme.PhraseTheme
+import com.umc.phrase.presentation.theme.PhraseTheme
 
 @Composable
 fun ProfileTabs(

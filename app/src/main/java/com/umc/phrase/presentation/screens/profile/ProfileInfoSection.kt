@@ -1,4 +1,4 @@
-package com.umc.phrase.profile.presentation.ui
+package com.umc.phrase.presentation.screens.profile
 
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.CircleShape
@@ -11,8 +11,8 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import coil3.compose.AsyncImage
-import com.umc.phrase.commons.ui.component.SecondaryButton
-import com.umc.phrase.commons.ui.theme.PhraseTheme
+import com.umc.phrase.presentation.components.SecondaryButton
+import com.umc.phrase.presentation.theme.PhraseTheme
 
 @Composable
 fun ProfileInfoSection(
