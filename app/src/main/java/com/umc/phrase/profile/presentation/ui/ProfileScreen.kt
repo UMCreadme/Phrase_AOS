@@ -17,7 +17,10 @@ import androidx.compose.ui.unit.dp
 import com.umc.phrase.R
 import com.umc.phrase.commons.ui.theme.PhraseTheme
 import com.umc.phrase.profile.presentation.ProfileEvent
+import com.umc.phrase.profile.presentation.ProfileState
 import com.umc.phrase.profile.presentation.ProfileViewModel
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
 
 @Composable
 fun ProfileScreen(
@@ -46,7 +49,7 @@ fun ProfileScreen(
             onEditProfileClick = { viewModel.onEvent(ProfileEvent.EditProfile) },
             onShareProfileClick = { viewModel.onEvent(ProfileEvent.ShareProfile) }
         )
-        Spacer(modifier = Modifier.height(16.dp))
+        Spacer(modifier = Modifier.height(8.dp))
 
         ProfileTabs(
             tabs = tabs,
@@ -56,35 +59,35 @@ fun ProfileScreen(
     }
 }
 
+class PreviewProfileViewModel : ProfileViewModel() {
+    private val previewState = ProfileState(
+        profileImage = "https://loremflickr.com/150/150",
+        profileName = "Pearl",
+        profileId = "pearl_k",
+        bio = "test bio for preview profile viewmodel",
+        bookCount = 5,
+        followingCount = 150,
+        followerCount = 200,
+        selectedTab = 1
+    )
+
+    override val uiState: StateFlow<ProfileState> = MutableStateFlow(previewState)
+
+    override fun onEvent(event: ProfileEvent) {
+        // 프리뷰용이므로 이벤트 처리 생략
+    }
+}
+
 @Preview(showBackground = true)
 @Composable
 fun ProfileScreenPreview() {
+    val previewViewModel = PreviewProfileViewModel()
+
     PhraseTheme {
-        ProfileInfoSection(
-            profileImage = "https://loremflickr.com/150/150",
-            profileName = "Pearl",
-            profileId = "pearl_k",
-            bio = "compose Lover... It is a test string for long bio example",
-            booksCount = 17,
-            followingCount = 700,
-            followerCount = 777,
-            onEditProfileClick = { /* 프로필 편집 로직 추가 */ },
-            onShareProfileClick = { /* 프로필 공유 로직 추가 */ }
-        )
-
-        val tabs = listOf(
-            "myPhrases" to R.drawable.ic_phraselist,
-            "likePhrases" to R.drawable.ic_likelist,
-            "myBooks" to R.drawable.ic_booklist
-        )
-
-        var selectedTab by remember { mutableStateOf(0) }
-
-        ProfileTabs(
-            tabs = tabs,
-            selectedTab = selectedTab,
-            onTabSelected = { index -> selectedTab = index }
-        )
+        ProfileScreen(viewModel = previewViewModel)
     }
 }
+
+
+
 

@@ -5,12 +5,12 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.update
 
-class ProfileViewModel : ViewModel() {
+open class ProfileViewModel : ViewModel() {
 
-    private val _uiState = MutableStateFlow(ProfileState())
-    val uiState: StateFlow<ProfileState> = _uiState
+    val _uiState = MutableStateFlow(ProfileState())
+    open val uiState: StateFlow<ProfileState> = _uiState
 
-    fun onEvent(event: ProfileEvent) {
+    open fun onEvent(event: ProfileEvent) {
         when (event) {
             is ProfileEvent.TabSelected -> {
                 _uiState.update { it.copy(selectedTab = event.tabIndex) }
