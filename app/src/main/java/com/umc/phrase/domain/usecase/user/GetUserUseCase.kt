@@ -1,4 +1,7 @@
 package com.umc.phrase.domain.usecase.user
 
-class GetUserUseCase {
+import com.umc.phrase.domain.model.User
+
+interface GetUserUseCase {
+    suspend operator fun invoke(id: Long): User?
 }
