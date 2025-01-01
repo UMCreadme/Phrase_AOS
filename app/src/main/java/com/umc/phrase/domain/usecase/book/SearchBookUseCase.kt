@@ -5,8 +5,9 @@ import com.umc.phrase.domain.model.Book
 import com.umc.phrase.domain.repository.BookRepository
 import kotlinx.coroutines.flow.Flow
 
-class GetBookUseCase(
+class SearchBookUseCase(
     private val bookRepository: BookRepository
 ) {
-    operator fun invoke(id: Int): Flow<DataResource<Book>> = bookRepository.getBook(id)
+    operator fun invoke(query: String): Flow<DataResource<List<Book>>> =
+        bookRepository.searchBooks(query)
 }
