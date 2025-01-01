@@ -30,12 +30,32 @@ class BookRepositoryImpl(
         }
     }
 
+    override fun getBook(isbn: String): Flow<DataResource<Book>> = flow {
+        emit(DataResource.loading())
+        try {
+            val book = bookRemoteDataSource.getBook(isbn).toDomain()
+            emit(DataResource.Success(book))
+        } catch (e: Exception) {
+            emit(DataResource.Error(e))
+        }
+    }
+
     override fun changeReadStatus(id: Int, readStatus: Boolean): Flow<DataResource<Boolean>> =
         flow {
-
             emit(DataResource.loading())
             try {
                 val result = bookRemoteDataSource.changeReadStatus(id, readStatus)
+                emit(DataResource.Success(result))
+            } catch (e: Exception) {
+                emit(DataResource.Error(e))
+            }
+        }
+
+    override fun changeReadStatus(isbn: String, readStatus: Boolean): Flow<DataResource<Boolean>> =
+        flow {
+            emit(DataResource.loading())
+            try {
+                val result = bookRemoteDataSource.changeReadStatus(isbn, readStatus)
                 emit(DataResource.Success(result))
             } catch (e: Exception) {
                 emit(DataResource.Error(e))

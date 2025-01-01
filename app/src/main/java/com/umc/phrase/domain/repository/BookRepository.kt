@@ -7,5 +7,7 @@ import kotlinx.coroutines.flow.Flow
 interface BookRepository {
     fun searchBooks(query: String): Flow<DataResource<List<Book>>>
     fun getBook(id: Int): Flow<DataResource<Book>>
+    fun getBook(isbn: String): Flow<DataResource<Book>>
     fun changeReadStatus(id: Int, readStatus: Boolean): Flow<DataResource<Boolean>>
+    fun changeReadStatus(isbn: String, readStatus: Boolean): Flow<DataResource<Boolean>>
 }
