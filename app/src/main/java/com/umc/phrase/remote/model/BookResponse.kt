@@ -5,7 +5,7 @@ import com.umc.phrase.data.model.BookEntity
 
 data class BookDetailResponse(
     @SerializedName("bookId")
-    val bookId: Int,
+    val bookId: Int? = null,
     @SerializedName("ISBN")
     val isbn: String,
     @SerializedName("bookCover")
@@ -21,6 +21,7 @@ data class BookDetailResponse(
 ) : RemoteMapper<BookEntity> {
     override fun toData(): BookEntity = BookEntity(
         id = bookId,
+        isbn = isbn,
         title = bookTitle,
         author = author,
         coverImageUrl = bookCover,

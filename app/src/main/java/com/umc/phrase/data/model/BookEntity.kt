@@ -3,7 +3,8 @@ package com.umc.phrase.data.model
 import com.umc.phrase.domain.model.Book
 
 data class BookEntity(
-    val id: Int,
+    val id: Int? = null,
+    val isbn: String,
     val title: String,
     val author: String,
     val coverImageUrl: String,
@@ -11,7 +12,7 @@ data class BookEntity(
     val purchaseLink: String,
 ) : DataMapper<Book> {
     override fun toDomain(): Book = Book(
-        id = id,
+        isbn = isbn,
         title = title,
         author = author,
         coverImageUrl = coverImageUrl,
