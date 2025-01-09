@@ -6,4 +6,5 @@ data class Phrase(
     val author: String,
     val imageUrl: String,
     val content: String,
+    val isLike: Boolean = false
 )
