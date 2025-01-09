@@ -6,7 +6,7 @@ import retrofit2.http.GET
 import retrofit2.http.Path
 import retrofit2.http.Query
 
-interface ApiService {
+interface BookApiService {
     @GET("books/{isbn}")
     suspend fun getBookDetail(
         @Path("isbn") isbn: String,
