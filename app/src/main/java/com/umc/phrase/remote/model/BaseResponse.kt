@@ -22,15 +22,6 @@ data class ResponseWithData<T>(
     val data: T,
 )
 
-data class PageInfo(
-    @SerializedName("page")
-    val page: Int,
-    @SerializedName("size")
-    val size: Int,
-    @SerializedName("hasNext")
-    val hasNext: Boolean,
-)
-
 data class ResponseWithPageInfo<T>(
     @SerializedName("isSuccess")
     val isSuccess: Boolean,
@@ -42,4 +33,14 @@ data class ResponseWithPageInfo<T>(
     val pageInfo: PageInfo,
     @SerializedName("result")
     val data: T,
+)
+
+
+data class PageInfo(
+    @SerializedName("page")
+    val page: Int,
+    @SerializedName("size")
+    val size: Int,
+    @SerializedName("hasNext")
+    val hasNext: Boolean,
 )

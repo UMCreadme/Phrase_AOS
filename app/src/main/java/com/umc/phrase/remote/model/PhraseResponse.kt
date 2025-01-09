@@ -1,8 +1,8 @@
 package com.umc.phrase.remote.model
 
 import com.google.gson.annotations.SerializedName
+import com.umc.phrase.data.model.PhraseEntity
 
-// TODO: Phrase data 레이어 정의된 후 RemoteMapper 임플하기
 data class PhrasePreviewResponse(
     @SerializedName("shortsId")
     val phraseId: Int,
@@ -10,4 +10,12 @@ data class PhrasePreviewResponse(
     val phraseImg: String,
     @SerializedName("phrase")
     val phrase: String,
-)
+) : RemoteMapper<PhraseEntity> {
+    override fun toData(): PhraseEntity = PhraseEntity(
+        id = phraseId,
+        title = "",
+        author = "",
+        imageUrl = phraseImg,
+        content = phrase,
+    )
+}
