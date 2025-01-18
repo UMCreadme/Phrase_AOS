@@ -6,3 +6,10 @@ data class User (
     val accountId: String,
     val profileImgUrl: String?
 )
+
+data class UserDetail(
+    val user: User,
+    val followers: Long,
+    val followings: Long,
+    val comment: String?
+)
