@@ -4,10 +4,10 @@ import com.umc.phrase.domain.DataResource
 import com.umc.phrase.domain.model.Book
 import com.umc.phrase.domain.repository.BookRepository
 import kotlinx.coroutines.flow.Flow
-import javax.inject.Inject
 
-class GetBookUseCase @Inject constructor(
+class SearchBookUseCase(
     private val bookRepository: BookRepository
 ) {
-    operator fun invoke(isbn: String): Flow<DataResource<Book>> = bookRepository.getBook(isbn)
+    operator fun invoke(query: String): Flow<DataResource<List<Book>>> =
+        bookRepository.searchBooks(query)
 }

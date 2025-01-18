@@ -13,6 +13,8 @@ import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Close
+import androidx.compose.material.icons.filled.Favorite
+import androidx.compose.material.icons.filled.FavoriteBorder
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonColors
 import androidx.compose.material3.ButtonDefaults
@@ -112,6 +114,29 @@ fun DeleteButton(
     }
 }
 
+@Composable
+fun LikeButton(
+    onClick: () -> Unit,
+    modifier: Modifier = Modifier,
+    isLiked: Boolean = false,
+    size: Int = 30
+) {
+    Box(
+        modifier = modifier
+            .clickable { onClick() },
+        contentAlignment = Alignment.Center
+    ) {
+
+        Icon(
+            imageVector = if (isLiked) Icons.Default.Favorite else Icons.Default.FavoriteBorder,
+            contentDescription = if (isLiked) "Unlike" else "Like",
+            tint = if (isLiked) MaterialTheme.colorScheme.secondary else MaterialTheme.colorScheme.surface,
+            modifier = Modifier.size(size.dp)
+        )
+    }
+}
+
+
 @Preview(showBackground = true)
 @Composable
 fun BasicButtonPreview1() {
@@ -180,5 +205,17 @@ fun SecondaryButtonPreview1() {
                 modifier = Modifier.weight(1f)
             )
         }
+    }
+}
+
+@Preview(showBackground = true)
+@Composable
+fun LikeButtonPreview() {
+    PhraseTheme {
+        LikeButton(
+            isLiked = true,
+            onClick = {},
+            modifier = Modifier.size(48.dp)
+        )
     }
 }
